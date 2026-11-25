@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#123c32">
+  <title>Christmas Secret Buddy 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="snow" aria-hidden="true">✦　·　❄　·　✦　·　❄　·　✦</div>
+  <header class="hero">
+    <div class="topline">✧ A LITTLE WISH, A LITTLE MYSTERY ✧</div>
+    <div class="holly">🎄</div>
+    <h1>SECRET BUDDY</h1>
+    <p class="year">CHRISTMAS 2026</p>
+    <p class="tagline">เทศกาลแห่งความลับและของขวัญของพวกเรา</p>
+    <div class="hero-rule"><span>✦</span></div>
+  </header>
+
+  <main class="wrap">
+    <section id="setupNotice" class="notice hidden">
+      <b>ตั้งค่าเว็บไซต์ก่อนใช้งาน</b>
+      <p>ใส่ค่า Supabase URL และ Anon Key ในไฟล์ <code>app.js</code> ตามคู่มือ README_TH.md</p>
+    </section>
+
+    <section id="authView" class="panel auth-panel">
+      <div class="tabs">
+        <button class="tab active" data-tab="signup">สมัครสมาชิกครั้งแรก</button>
+        <button class="tab" data-tab="login">เข้าสู่ระบบ</button>
+      </div>
+      <form id="signupForm" class="auth-form">
+        <h2>เริ่มต้นความลับของคุณ ✨</h2>
+        <label>เลือกชื่อของตัวเอง</label>
+        <select id="signupName" required></select>
+        <label>เลือกบัดดี้ที่จับได้</label>
+        <select id="signupBuddy" required><option value="">เลือกบัดดี้</option></select>
+        <p class="hint">เลือกได้ 1 คนเท่านั้น ชื่อที่มีคนเลือกแล้วจะไม่แสดง และยืนยันแล้วเปลี่ยนไม่ได้</p>
+        <label>ตั้งรหัสผ่าน</label>
+        <input id="signupPassword" type="password" minlength="8" placeholder="อย่างน้อย 8 ตัวอักษร" required>
+        <label>ยืนยันรหัสผ่าน</label>
+        <input id="signupConfirm" type="password" minlength="8" placeholder="กรอกรหัสผ่านอีกครั้ง" required>
+        <button class="primary" type="submit">สร้างบัญชีและล็อกบัดดี้</button>
+      </form>
+      <form id="loginForm" class="auth-form hidden">
+        <h2>ยินดีต้อนรับกลับมา 🎁</h2>
+        <label>ชื่อของคุณ</label>
+        <select id="loginName" required></select>
+        <label>รหัสผ่าน</label>
+        <input id="loginPassword" type="password" placeholder="รหัสผ่านของคุณ" required>
+        <button class="primary" type="submit">เข้าสู่ระบบ</button>
+      </form>
+      <p id="authMessage" class="message" role="status"></p>
+    </section>
+
+    <section id="appView" class="hidden">
+      <div class="welcome panel">
+        <div><span class="eyebrow">WELCOME BACK</span><h2>สุขสันต์วันคริสต์มาส <span id="welcomeName"></span> ♡</h2></div>
+        <button id="logoutBtn" class="ghost">ออกจากระบบ</button>
+      </div>
+      <nav class="menu">
+        <button class="menu-btn active" data-page="buddy"><span>🕵️</span> My Buddy</button>
+        <button class="menu-btn" data-page="wishlist"><span>🎁</span> My Wishlist</button>
+        <button class="menu-btn" data-page="clue"><span>💌</span> Send a Clue</button>
+        <button class="menu-btn" data-page="mailbox"><span>📬</span> Secret Mailbox</button>
+      </nav>
+
+      <section id="page-buddy" class="page panel">
+        <span class="eyebrow">YOUR SECRET PERSON</span>
+        <h2>My Secret Buddy</h2>
+        <div class="buddy-card"><div class="gift">🎁</div><div><small>บัดดี้ของคุณคือ</small><h3 id="buddyName">—</h3></div></div>
+        <h3 class="section-title">สิ่งที่บัดดี้อยากได้</h3>
+        <div id="buddyWishlist" class="wish-list"><p class="muted">กำลังโหลด Wishlist...</p></div>
+      </section>
+
+      <section id="page-wishlist" class="page panel hidden">
+        <span class="eyebrow">MAKE A LITTLE WISH</span><h2>My Wishlist</h2>
+        <p class="muted">เพิ่มสิ่งที่อยากได้ เพื่อให้บัดดี้ของคุณเข้ามาดูได้ คุณจะไม่เห็นว่าใครเป็นคนดู</p>
+        <form id="wishForm" class="wish-form">
+          <input id="wishTitle" maxlength="100" placeholder="ชื่อสิ่งของที่อยากได้" required>
+          <textarea id="wishDetail" maxlength="500" placeholder="รายละเอียด / สี / รุ่น / ขนาด (ถ้ามี)"></textarea>
+          <input id="wishUrl" type="url" placeholder="ลิงก์ตัวอย่างสินค้า (ไม่บังคับ)">
+          <button class="primary" type="submit">＋ เพิ่มใน Wishlist</button>
+        </form>
+        <div id="myWishlist" class="wish-list"></div>
+      </section>
+
+      <section id="page-clue" class="page panel hidden">
+        <span class="eyebrow">A LITTLE MYSTERY</span><h2>Send a Clue</h2>
+        <p class="muted">ส่งคำใบ้ให้บัดดี้ของคุณ ข้อความจะไม่แสดงชื่อผู้ส่ง</p>
+        <form id="clueForm" class="wish-form">
+          <textarea id="clueText" maxlength="500" placeholder="เขียนคำใบ้ของคุณ..." required></textarea>
+          <button class="primary" type="submit">ส่งคำใบ้ลับ 💌</button>
+        </form>
+      </section>
+
+      <section id="page-mailbox" class="page panel hidden">
+        <span class="eyebrow">A SECRET MESSAGE FOR YOU</span><h2>Secret Mailbox</h2>
+        <div id="mailboxList" class="wish-list"><p class="muted">กำลังโหลดข้อความ...</p></div>
+      </section>
+    </section>
+    <p class="footer">MADE WITH CHRISTMAS MAGIC · 38 MEMBERS</p>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
