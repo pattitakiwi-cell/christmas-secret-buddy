@@ -7,7 +7,7 @@ const sb = dbReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KE
 const MEMBERS = ["กิต","เท็น","แบมโบ","ต้นปาล์ม","บ๊อบบี้","มาสเตอร์","ธรรมะ","จิมมี่","ปันปัน","สุดเขต","ออโต้","คิม","เจเจ","กานต์","นนท์","ภาส","คอปเตอร์","จิม","ตั้น","สตางค์","อาอิง","คณิน","เก็บตุน","โปรแกรม","ต้นน้ำ","ลิลลี่","กีวี่","น้ำอิง","หมิงหมิง","ใบข้าว","ลูกกอล์ฟ","แบมแบม","ติว","เซย่า","นีออน","ลิตเติ้ล","ครูสา","ครูผักกาด"];
 let currentUser=null, currentMember=null, currentBuddy=null;
 const $=id=>document.getElementById(id);
-const emailFor=n=>`member${String(MEMBERS.indexOf(n)+1).padStart(2,"0")}@witcomchristmas.com`;
+const emailFor=n=>`member${String(MEMBERS.indexOf(n)+1).padStart(2,"0")}@buddy.com`;
 function toast(s){const t=$("toast");t.textContent=s;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800)}
 function message(s){$("authMessage").textContent=s}
 function fillMembers(){
