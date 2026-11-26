@@ -1,5 +1,5 @@
 // 1) ใส่ Project URL และ anon/publishable key จาก Supabase
-const SUPABASE_URL = "https://kugmgjtnqnjdediyhypd.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://kugmgjtnqnjdediyhypd.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_WzrMjiRfywrZBRB820xgLA_jRk1NXIG";
 const dbReady = SUPABASE_URL.startsWith("https://") && !SUPABASE_ANON_KEY.includes("ใส่_");
 const sb = dbReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
